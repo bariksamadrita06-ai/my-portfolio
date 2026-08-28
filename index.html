@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samadrita Barik | Creative Technologist Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Three.js & OrbitControls for WebGL2 4K Photorealistic Nature Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION SECTION
+         ============================================ -->
+    <header class="navbar" data-section="navbar">
+        <nav class="navbar-container">
+            <div class="navbar-brand">
+                <span class="brand-text">Samadrita</span>
+                <span class="brand-accent">.</span>
+            </div>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link" data-scroll>Home</a></li>
+                <li><a href="#about" class="nav-link" data-scroll>About</a></li>
+                <li><a href="#projects" class="nav-link" data-scroll>Projects</a></li>
+                <li><a href="#skills" class="nav-link" data-scroll>Skills</a></li>
+                <li><a href="#achievements" class="nav-link" data-scroll>Achievements</a></li>
+                <li><a href="#contact" class="nav-link" data-scroll>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="hero" data-section="hero">
+        <!-- Temporary Haze Overlay during Copilot Welcome -->
+        <div class="hero-haze-overlay" id="heroHazeOverlay" aria-hidden="true"></div>
+
+        <!-- Animated grid background -->
+        <div class="grid-background"></div>
+        
+        <!-- AI Particles Container -->
+        <div class="ai-particles" id="aiParticles"></div>
+
+        <!-- Hero Robot Copilot -->
+        <div class="hero-robot-copilot" id="heroRobotCopilot" role="img" aria-label="Hero AI Copilot Agent">
+            <div class="robot-dialog-box">
+                <span class="robot-typing-text" id="robotTypingText"></span>
+                <span class="typing-cursor">|</span>
+            </div>
+            <div class="ai-watch-agent hero-robot">
+                <div class="agent-dialog"><span>AI Copilot ⚡</span></div>
+                <div class="agent-aura"></div>
+                <div class="agent-orbit"></div>
+                <div class="agent-antenna">
+                    <span></span>
+                    <div class="signal-ring ring-1"></div>
+                    <div class="signal-ring ring-2"></div>
+                </div>
+                <div class="agent-ear ear-left"></div>
+                <div class="agent-ear ear-right"></div>
+                <div class="agent-head">
+                    <div class="agent-visor-glare"></div>
+                    <div class="agent-face">
+                        <span class="agent-eye eye-left">
+                            <span class="eye-pupil"><i></i><b class="eye-shine"></b></span>
+                        </span>
+                        <span class="agent-eye eye-right">
+                            <span class="eye-pupil"><i></i><b class="eye-shine"></b></span>
+                        </span>
+                        <span class="agent-blush blush-left"></span>
+                        <span class="agent-blush blush-right"></span>
+                        <span class="agent-smile"></span>
+                    </div>
+                </div>
+                <div class="agent-body">
+                    <div class="agent-collar"></div>
+                    <span class="agent-core"><i></i></span>
+                    <div class="agent-thruster">
+                        <span class="thruster-flame"></span>
+                        <span class="thruster-ring"></span>
+                    </div>
+                </div>
+                <div class="agent-arm arm-left"><span class="agent-hand"></span></div>
+                <div class="agent-arm arm-right"><span class="agent-hand"></span></div>
+            </div>
+        </div>
+
+        <!-- Decorative 3D AI flower blooms -->
+        <div class="ai-blooms" aria-hidden="true">
+            <div class="ai-bloom bloom-left">
+                <span class="bloom-petal petal-1"></span><span class="bloom-petal petal-2"></span>
+                <span class="bloom-petal petal-3"></span><span class="bloom-petal petal-4"></span>
+                <span class="bloom-petal petal-5"></span><span class="bloom-petal petal-6"></span>
+                <span class="bloom-core"></span>
+            </div>
+            <div class="ai-bloom bloom-right">
+                <span class="bloom-petal petal-1"></span><span class="bloom-petal petal-2"></span>
+                <span class="bloom-petal petal-3"></span><span class="bloom-petal petal-4"></span>
+                <span class="bloom-petal petal-5"></span><span class="bloom-petal petal-6"></span>
+                <span class="bloom-core"></span>
+            </div>
+            <div class="ai-bloom bloom-small">
+                <span class="bloom-petal petal-1"></span><span class="bloom-petal petal-2"></span>
+                <span class="bloom-petal petal-3"></span><span class="bloom-petal petal-4"></span>
+                <span class="bloom-petal petal-5"></span><span class="bloom-petal petal-6"></span>
+                <span class="bloom-core"></span>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title">
+                        <span class="hero-word" data-word="From">From</span>
+                        <span class="hero-word" data-word="TV">TV</span>
+                        <span class="hero-word" data-word="Award">Award</span>
+                    </h1>
+                    <h1 class="hero-title">
+                        <span class="hero-word" data-word="to">to</span>
+                        <span class="hero-word" data-word="Tech">Tech</span>
+                        <span class="hero-word" data-word="World">World</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        <span class="hero-intro">Hey! I'm <span class="accent-highlight">Samadrita</span></span>, a CSE 1st year student, creative thinker, and everyday learner who loves to code, create, and explore what technology can do.
+                    </p>
+                </div>
+
+                <div class="hero-portrait" aria-label="Profile picture">
+                    <div class="portrait-orbit orbit-one"></div>
+                    <div class="portrait-orbit orbit-two"></div>
+                    <div class="portrait-frame">
+                        <img src="./images/pic.png" alt="Samadrita Barik" data-profile-image>
+                        <span class="portrait-scan"></span>
+                        <span class="portrait-corner corner-top"></span>
+                        <span class="portrait-corner corner-bottom"></span>
+                    </div>
+                    <span class="portrait-label">AI / CREATIVE CORE</span>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary" data-scroll>
+                    <span>Explore My Portfolio</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+                <a href="resume.pdf" class="btn btn-secondary" download>
+                    <span>Download Resume</span>
+                </a>
+            </div>
+
+            <!-- Floating decorative elements -->
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+         ============================================ -->
+    <section class="about" id="about" data-section="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-cards">
+                        <article class="about-card about-card-intro">
+                            <span class="about-card-icon" aria-hidden="true">&lt;/&gt;</span>
+                            <div>
+                                <span class="about-card-label">01 / CSE MINDSET</span>
+                                <p>I'm a Computer Science & Engineering 1st year student at Future Institute of Engineering and Management, passionate about blending creativity with technology.</p>
+                            </div>
+                        </article>
+                        <article class="about-card about-card-journey">
+                            <span class="about-card-icon" aria-hidden="true">✦</span>
+                            <div>
+                                <span class="about-card-label">02 / CREATIVE JOURNEY</span>
+                                <p>My journey started with a <span class="accent-highlight">TV Award</span> for my artistic work in 2017, and now I'm channeling that creative energy into the digital world. I believe in the power of visual storytelling and innovative problem-solving.</p>
+                            </div>
+                        </article>
+                        <article class="about-card">
+                            <span class="about-card-icon" aria-hidden="true">⌘</span>
+                            <div>
+                                <span class="about-card-label">03 / EDUCATION</span>
+                                <p>B.Tech in CSE (2026) <span class="card-divider">|</span> MAKAUT</p>
+                            </div>
+                        </article>
+                        <article class="about-card">
+                            <span class="about-card-icon" aria-hidden="true">⌖</span>
+                            <div>
+                                <span class="about-card-label">04 / LOCATION</span>
+                                <p>Kolkata, West Bengal, India</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="about-visual">
+                    <div class="journey-graphic" aria-label="Creativity to Technology to Innovation flow">
+                        <span class="graphic-caption">CREATIVE SYSTEM / 001</span>
+                        <span class="graphic-particle particle-a"></span>
+                        <span class="graphic-particle particle-b"></span>
+                        <span class="graphic-particle particle-c"></span>
+                        <i class="circuit-line circuit-one"></i>
+                        <i class="circuit-line circuit-two"></i>
+                        <i class="circuit-line circuit-three"></i>
+                        <div class="journey-node journey-creativity">
+                            <span class="journey-index">01</span>
+                            <strong>CREATIVITY</strong>
+                            <small>IMAGINE</small>
+                        </div>
+                        <div class="journey-connector connector-one"></div>
+                        <div class="journey-node journey-technology">
+                            <span class="journey-index">02</span>
+                            <strong>TECHNOLOGY</strong>
+                            <small>BUILD</small>
+                        </div>
+                        <div class="journey-connector connector-two"></div>
+                        <div class="journey-node journey-innovation">
+                            <span class="journey-index">03</span>
+                            <strong>INNOVATION</strong>
+                            <small>IMPACT</small>
+                        </div>
+                    </div>
+
+                    <div class="identity-card">
+                        <span class="identity-kicker">PERSONAL IDENTITY</span>
+                        <p class="identity-title">Creative Mind <span>×</span> CSE Student</p>
+                        <p class="identity-copy">Turning ideas into code, visuals & innovation.</p>
+                        <span class="identity-status"><i></i> CURIOUS / BUILDING / LEARNING</span>
+                    </div>
+
+                    <div class="hobbies-card">
+                        <div class="hobbies-glow"></div>
+                        <span class="hobbies-kicker">PERSONAL ENERGY / 002</span>
+                        <div class="hobbies-header">
+                            <h3 class="hobbies-title">Hobbies <span>&</span> Vibrance</h3>
+                            <div class="hobbies-badges">
+                                <span class="hobby-badge">🏸 Badminton</span>
+                                <span class="hobby-badge">🎤 Singing</span>
+                            </div>
+                        </div>
+                        <p class="hobbies-copy">
+                            <strong class="hobbies-highlight">HOBBIES:</strong> Playing badminton and singing, which keeps me energetic and creative.
+                        </p>
+                        <span class="hobbies-status"><i></i> ENERGETIC / MUSICAL / ATHLETIC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROJECTS SECTION
+         ============================================ -->
+    <section class="projects" id="projects" data-section="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            
+            <!-- Large Rectangular Box below My Projects -->
+            <div class="projects-rectangular-box" id="projectsRectangularBox">
+                <div class="box-window-bar">
+                    <span class="window-dot dot-red"></span>
+                    <span class="window-dot dot-yellow"></span>
+                    <span class="window-dot dot-green"></span>
+                    <span class="window-title">SAMADRITA_AI_AGENT // CODER_BOT v2.0</span>
+                </div>
+                <div class="box-inner-stage" id="robotStage">
+                    <div class="box-grid-overlay"></div>
+                    <div class="box-glow-orb orb-1"></div>
+                    <div class="box-glow-orb orb-2"></div>
+
+                    <!-- AI Girl Robot Workspace -->
+                    <div class="ai-girl-robot-workspace" id="aiGirlRobotContainer" aria-label="AI Girl Robot Coding Agent">
+                        <!-- Speech Bubble ("Hi!") -->
+                        <div class="robot-speech-bubble" id="robotSpeechBubble">
+                            <span class="bubble-text">Hi! 👋</span>
+                            <span class="bubble-tail"></span>
+                        </div>
+
+                        <!-- Live Generated Code Stream -->
+                        <div class="live-code-stream" id="liveCodeStream">
+                            <span class="code-line line-1">&lt;AI_Coder /&gt;</span>
+                            <span class="code-line line-2">const samadrita = true;</span>
+                            <span class="code-line line-3">function generateCode() {}</span>
+                            <span class="code-line line-4">import { Innovation } from 'CSE';</span>
+                            <span class="code-line line-5">01001001 01001111</span>
+                            <span class="code-line line-6">buildFuture();</span>
+                        </div>
+
+                        <!-- Cartoon Girl Robot Character -->
+                        <div class="girl-robot-avatar">
+                            <!-- Hair & Cyber Accessories -->
+                            <div class="robot-hair-back"></div>
+                            <div class="cyber-headset">
+                                <span class="headset-ear ear-l"></span>
+                                <span class="headset-ear ear-r"></span>
+                                <span class="headset-mic"></span>
+                            </div>
+
+                            <!-- Head & Face (Cartoon Avatar of Samadrita) -->
+                            <div class="robot-head" id="robotHead">
+                                <div class="robot-hair-front">
+                                    <span class="hair-bang bang-1"></span>
+                                    <span class="hair-bang bang-2"></span>
+                                    <span class="hair-clip">✦</span>
+                                </div>
+                                <div class="robot-face">
+                                    <div class="robot-eyebrows">
+                                        <span class="brow brow-l"></span>
+                                        <span class="brow brow-r"></span>
+                                    </div>
+                                    <div class="robot-eyes">
+                                        <span class="eye eye-l"><i class="pupil"></i><b class="shine"></b></span>
+                                        <span class="eye eye-r"><i class="pupil"></i><b class="shine"></b></span>
+                                    </div>
+                                    <!-- Purple Framed Spectacles -->
+                                    <div class="purple-spectacles">
+                                        <span class="spec-frame spec-l"></span>
+                                        <span class="spec-bridge"></span>
+                                        <span class="spec-frame spec-r"></span>
+                                    </div>
+                                    <span class="robot-blush blush-l"></span>
+                                    <span class="robot-blush blush-r"></span>
+                                    <span class="robot-mouth" id="robotMouth"></span>
+                                </div>
+                            </div>
+
+                            <!-- Body & Outfit -->
+                            <div class="robot-torso">
+                                <div class="cyber-jacket"></div>
+                                <div class="robot-core-light"><i></i></div>
+                            </div>
+
+                            <!-- Arms & Hands -->
+                            <div class="robot-arm arm-l" id="robotArmLeft">
+                                <div class="hand hand-l"></div>
+                            </div>
+                            <div class="robot-arm arm-r" id="robotArmRight">
+                                <div class="hand hand-r"></div>
+                            </div>
+
+                            <!-- Desk & Glowing Laptop -->
+                            <div class="robot-desk">
+                                <div class="laptop">
+                                    <div class="laptop-screen">
+                                        <div class="screen-glow"></div>
+                                        <div class="screen-code-lines">
+                                            <span></span><span></span><span></span><span></span>
+                                        </div>
+                                    </div>
+                                    <div class="laptop-keyboard">
+                                        <div class="key-glow"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card" data-project="portfolio">
+                    <div class="project-info">
+                        <h3 class="project-title">Technical & Creative Portfolio 2026</h3>
+                        <p class="project-description">
+                            My college submission portfolio showcasing my journey from 2017 to 2026, converting my achievements into a digital portfolio.
+                        </p>
+                        
+                        <div class="project-problem">
+                            <strong>Problem Statement:</strong>
+                            <p>Create a structured portfolio for B.Tech 1st Year submission that tells my unique story.</p>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <button class="project-btn" data-modal="portfolio">View Details</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SKILLS SECTION
+         ============================================ -->
+    <section class="skills" id="skills" data-section="skills">
+        <div class="skills-atmosphere" id="skillsAtmosphere" aria-hidden="true">
+            <!-- Futuristic AI Workspace Floating Code Snippets -->
+            <div class="workspace-code code-tag tag-cyan pos-1" data-depth="0.22">const skills = [];</div>
+            <div class="workspace-code code-func tag-purple pos-2" data-depth="0.32">function createFuture() {}</div>
+            <div class="workspace-code code-tag tag-pink pos-3" data-depth="0.18">&lt;div class="portfolio"&gt;</div>
+            <div class="workspace-code code-keyword tag-cyan pos-4" data-depth="0.28">Python 3.12 🐍</div>
+            <div class="workspace-code code-keyword tag-purple pos-5" data-depth="0.15">JavaScript ES6 ⚡</div>
+            <div class="workspace-code code-tag tag-pink pos-6" data-depth="0.25">&lt;HTML5 / CSS3&gt;</div>
+            <div class="workspace-code code-log tag-cyan pos-7" data-depth="0.3">console.log("Hello World");</div>
+            <div class="workspace-code code-obj tag-purple pos-8" data-depth="0.16">{ coding: true, AI: 1 }</div>
+            <div class="workspace-code code-loop tag-pink pos-9" data-depth="0.26">while(learning) { grow(); }</div>
+            <div class="workspace-code code-func tag-cyan pos-10" data-depth="0.34">async function innovate()</div>
+            <div class="workspace-code code-tag tag-purple pos-11" data-depth="0.2">&lt;AI.Copilot /&gt;</div>
+            <div class="workspace-code code-keyword tag-cyan pos-12" data-depth="0.14">CSE 2026 // MAKAUT</div>
+            <div class="workspace-code code-import tag-pink pos-13" data-depth="0.27">import { Creativity } from 'mind';</div>
+
+            <!-- Futuristic Floating Search / Command Boxes -->
+            <div class="workspace-command cmd-box-1" data-depth="0.35">
+                <span class="cmd-prompt">&gt;</span> <span class="cmd-text">search skills...</span><span class="cmd-cursor">_</span>
+            </div>
+            <div class="workspace-command cmd-box-2" data-depth="0.28">
+                <span class="cmd-icon">⚡</span> <span class="cmd-text">find: Python</span>
+            </div>
+            <div class="workspace-command cmd-box-3" data-depth="0.33">
+                <span class="cmd-prompt">&gt;</span> <span class="cmd-text">explore AI</span><span class="cmd-badge">LIVE</span>
+            </div>
+            <div class="workspace-command cmd-box-4" data-depth="0.25">
+                <span class="cmd-prompt">&gt;</span> <span class="cmd-text">search("CSE")</span>
+            </div>
+            <div class="workspace-command cmd-box-5" data-depth="0.3">
+                <span class="cmd-icon">🔍</span> <span class="cmd-text">copilot.suggest()</span>
+            </div>
+
+            <pre class="code-stream stream-one">const curiosity = true;
+if (curiosity) {
+  learn();
+  build();
+}</pre>
+            <pre class="code-stream stream-two">model.fit(ideas)
+  .transform(visuals)
+  .ship(innovation);</pre>
+            <div class="ai-sketch">
+                <i class="sketch-line sketch-line-one"></i>
+                <i class="sketch-line sketch-line-two"></i>
+                <i class="sketch-line sketch-line-three"></i>
+                <i class="sketch-line sketch-line-four"></i>
+                <span class="sketch-node sketch-node-one"></span>
+                <span class="sketch-node sketch-node-two"></span>
+                <span class="sketch-node sketch-node-three"></span>
+                <span class="sketch-node sketch-node-four"></span>
+                <span class="sketch-node sketch-node-core"></span>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Skills & Interests</h2>
+
+            <div class="skills-grid">
+                <!-- Programming Skills -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Programming</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="python">
+                            <span class="skill-icon">🐍</span>
+                            <span class="skill-name">Python</span>
+                            <span class="skill-level">Learning & Growing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Skills -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Web Development</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="html">
+                            <span class="skill-icon">🏗️</span>
+                            <span class="skill-name">HTML</span>
+                            <span class="skill-level">Fundamentals</span>
+                        </div>
+                        <div class="skill-item" data-skill="css">
+                            <span class="skill-icon">🎨</span>
+                            <span class="skill-name">CSS</span>
+                            <span class="skill-level">In Progress</span>
+                        </div>
+                        <div class="skill-item" data-skill="javascript">
+                            <span class="skill-icon">⚡</span>
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-level">Beginner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Skills -->
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Creative Skills</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="visual">
+                            <span class="skill-icon">🎭</span>
+                            <span class="skill-name">Visual Storytelling</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="skill-item" data-skill="thinking">
+                            <span class="skill-icon">💡</span>
+                            <span class="skill-name">Creative Thinking</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="skills-note">Current Focus: <span class="accent-highlight">Web Development</span> & <span class="accent-highlight">Python Learning</span></p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ACHIEVEMENTS SECTION
+         ============================================ -->
+    <section class="achievements" id="achievements" data-section="achievements">
+        <div class="achievement-art cosmic-purple-space" id="achievementCosmos" aria-hidden="true">
+            <!-- 3D 4K Milky Way Galaxy Band & Glowing Nebulas -->
+            <div class="milkyway-band"></div>
+            <div class="milkyway-spiral"></div>
+            <div class="cosmic-nebula nebula-purple-1"></div>
+            <div class="cosmic-nebula nebula-purple-2"></div>
+            <div class="cosmic-nebula nebula-magenta"></div>
+
+            <!-- Mini Painting 1: Radiant 3D Sun with Solar Corona & Flares -->
+            <div class="celestial-canvas space-sun" data-depth="0.15">
+                <div class="sun-flare-ring"></div>
+                <div class="sun-rays"></div>
+                <div class="sun-corona"></div>
+                <div class="sun-core"></div>
+                <div class="sun-prominence prominence-1"></div>
+                <div class="sun-prominence prominence-2"></div>
+            </div>
+
+            <!-- Mini Painting 2: Luminous Moon with Craters & Ethereal Glow -->
+            <div class="celestial-canvas space-moon" data-depth="0.2">
+                <div class="moon-aura"></div>
+                <div class="moon-sphere">
+                    <span class="crater crater-a"></span>
+                    <span class="crater crater-b"></span>
+                    <span class="crater crater-c"></span>
+                    <span class="crater crater-d"></span>
+                    <span class="moon-shadow"></span>
+                    <span class="moon-crescent-edge"></span>
+                </div>
+            </div>
+
+            <!-- Mini Painting 3: Detailed 3D Orbital Satellites with Solar Panels & Beams -->
+            <div class="celestial-canvas space-satellite sat-primary" data-depth="0.25">
+                <div class="sat-body">
+                    <div class="sat-dish"><i></i></div>
+                    <div class="sat-chassis"></div>
+                    <div class="sat-wing wing-left">
+                        <span class="solar-cell"></span><span class="solar-cell"></span><span class="solar-cell"></span>
+                    </div>
+                    <div class="sat-wing wing-right">
+                        <span class="solar-cell"></span><span class="solar-cell"></span><span class="solar-cell"></span>
+                    </div>
+                    <div class="sat-antenna"><i></i></div>
+                    <div class="sat-beam"></div>
+                    <div class="sat-signal-wave"></div>
+                </div>
+            </div>
+
+            <div class="celestial-canvas space-satellite sat-secondary" data-depth="0.3">
+                <div class="sat-body sat-probe">
+                    <div class="probe-sphere"></div>
+                    <div class="probe-panel probe-panel-top"></div>
+                    <div class="probe-panel probe-panel-bottom"></div>
+                    <div class="probe-radar"></div>
+                    <div class="sat-blink-beacon"></div>
+                </div>
+            </div>
+
+            <!-- Mini Painting 4: 3D High-Speed Rockets with Plasma Plumes -->
+            <div class="celestial-canvas space-rocket rocket-cruise" data-depth="0.35">
+                <div class="rocket-hull">
+                    <span class="hull-nose"></span>
+                    <span class="hull-body"></span>
+                    <span class="hull-window"></span>
+                    <span class="hull-fin fin-top"></span>
+                    <span class="hull-fin fin-bottom"></span>
+                    <span class="rocket-thruster">
+                        <i class="flame-core"></i>
+                        <i class="flame-outer"></i>
+                        <b class="thruster-smoke"></b>
+                    </span>
+                </div>
+            </div>
+
+            <div class="celestial-canvas space-rocket rocket-interstellar" data-depth="0.28">
+                <div class="rocket-hull">
+                    <span class="hull-nose"></span>
+                    <span class="hull-body"></span>
+                    <span class="hull-window"></span>
+                    <span class="hull-fin fin-top"></span>
+                    <span class="hull-fin fin-bottom"></span>
+                    <span class="rocket-thruster">
+                        <i class="flame-core"></i>
+                        <i class="flame-outer"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="celestial-canvas space-rocket rocket-voyager" data-depth="0.4">
+                <div class="rocket-hull">
+                    <span class="hull-nose"></span>
+                    <span class="hull-body"></span>
+                    <span class="hull-window"></span>
+                    <span class="hull-fin fin-top"></span>
+                    <span class="hull-fin fin-bottom"></span>
+                    <span class="rocket-thruster">
+                        <i class="flame-core"></i>
+                        <i class="flame-outer"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Mini Painting 5: 4K Glowing Starfield, Diamond Pulsars & Shooting Meteors -->
+            <div class="starfield-4k">
+                <span class="star-4k star-sparkle star-pos-1"></span>
+                <span class="star-4k star-sparkle star-pos-2"></span>
+                <span class="star-4k star-sparkle star-pos-3"></span>
+                <span class="star-4k star-sparkle star-pos-4"></span>
+                <span class="star-4k star-sparkle star-pos-5"></span>
+                <span class="star-4k star-sparkle star-pos-6"></span>
+                <span class="star-4k star-diamond diamond-1"></span>
+                <span class="star-4k star-diamond diamond-2"></span>
+                <span class="star-4k star-diamond diamond-3"></span>
+                <span class="star-4k star-cross cross-1"></span>
+                <span class="star-4k star-cross cross-2"></span>
+                <span class="star-4k star-cross cross-3"></span>
+                <span class="meteor-streak meteor-1"></span>
+                <span class="meteor-streak meteor-2"></span>
+                <span class="meteor-streak meteor-3"></span>
+            </div>
+
+            <!-- Orbital Resonance Rings -->
+            <span class="innovation-orbit orbit-a"></span>
+            <span class="innovation-orbit orbit-b"></span>
+            <span class="innovation-line line-a"></span>
+            <span class="innovation-line line-b"></span>
+            <span class="innovation-line line-c"></span>
+            <span class="innovation-node node-a"></span>
+            <span class="innovation-node node-b"></span>
+            <span class="innovation-node node-c"></span>
+        </div>
+        <div class="container">
+            <div class="achievements-header">
+                <h2 class="section-title">Achievements & Recognition</h2>
+                <div class="ai-watch-agent" role="img" aria-label="Cartoon AI Copilot Agent">
+                    <div class="agent-dialog"><span>AI Copilot ⚡</span></div>
+                    <div class="agent-aura"></div>
+                    <div class="agent-orbit"></div>
+                    <div class="agent-antenna">
+                        <span></span>
+                        <div class="signal-ring ring-1"></div>
+                        <div class="signal-ring ring-2"></div>
+                    </div>
+                    <div class="agent-ear ear-left"></div>
+                    <div class="agent-ear ear-right"></div>
+                    <div class="agent-head">
+                        <div class="agent-visor-glare"></div>
+                        <div class="agent-face">
+                            <span class="agent-eye eye-left">
+                                <span class="eye-pupil"><i></i><b class="eye-shine"></b></span>
+                            </span>
+                            <span class="agent-eye eye-right">
+                                <span class="eye-pupil"><i></i><b class="eye-shine"></b></span>
+                            </span>
+                            <span class="agent-blush blush-left"></span>
+                            <span class="agent-blush blush-right"></span>
+                            <span class="agent-smile"></span>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-collar"></div>
+                        <span class="agent-core"><i></i></span>
+                        <div class="agent-thruster">
+                            <span class="thruster-flame"></span>
+                            <span class="thruster-ring"></span>
+                        </div>
+                    </div>
+                    <div class="agent-arm arm-left"><span class="agent-hand"></span></div>
+                    <div class="agent-arm arm-right"><span class="agent-hand"></span></div>
+                </div>
+            </div>
+
+            <div class="achievements-timeline">
+                <!-- Achievement 1 -->
+                <div class="achievement-item achievement-item-1" data-achievement="1">
+                    <div class="achievement-media">
+                        <div class="achievement-img-frame">
+                            <img src="./images/achievement1.png" alt="2nd Position - Chotoder Durgapuja Drawing Competition Award Certificate and Trophy" class="achievement-img" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="achievement-info">
+                        <div class="achievement-date">2017</div>
+                        <div class="achievement-content">
+                            <h3 class="achievement-title">
+                                🏆 2nd Position - Chotoder Durgapuja Drawing Competition
+                            </h3>
+                            
+                            <p class="achievement-org">
+                                <strong>Awarded by:</strong> ETV News Bangla TV Channel
+                            </p>
+
+                            <p class="achievement-description">
+                                Trophy and certificate awarded for my traditional hand-drawn artwork in this nationally broadcasted competition. This recognition marked my first major achievement in visual arts at age 9.
+                            </p>
+
+                            <div class="achievement-badge">
+                                <span class="badge-text">TV Broadcast Recognition</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="achievement-item achievement-item-2" data-achievement="2">
+                    <div class="achievement-info">
+                        <div class="achievement-date">2026</div>
+                        
+                        <div class="achievement-content">
+                            <h3 class="achievement-title">
+                                ✨ Selected Illustrator - Ashvamedha Anthology
+                            </h3>
+                            
+                            <p class="achievement-org">
+                                <strong>Published by:</strong> Nirjhor Publications
+                            </p>
+
+                            <p class="achievement-description">
+                                Selected as an illustrator for this prestigious anthology. My traditional hand-drawn Bengali Festivals pencil sketch collage (created on paper with pen & pencil) has been officially selected for publication.
+                            </p>
+
+                            <div class="achievement-badge">
+                                <span class="badge-text">Published Illustrator</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-media">
+                        <div class="achievement-img-frame">
+                            <img src="./images/achievement2.png" alt="Selected Illustrator - Ashvamedha Anthology Pencil Sketch Artwork" class="achievement-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement 3: Certifications & Courses -->
+                <div class="achievement-item achievement-item-3" data-achievement="3">
+                    <div class="achievement-info">
+                        <div class="achievement-date">2025-2026</div>
+                        <div class="achievement-content bold-framed-box">
+                            <div class="bold-frame-indicator">
+                                <span class="bold-frame-badge">✦ VERIFIED CREDENTIALS</span>
+                            </div>
+                            <h3 class="achievement-title">
+                                📜 Professional Certifications
+                            </h3>
+                            
+                            <p class="achievement-org">
+                                <strong>Certified by:</strong> Adobe & CSC Academy
+                            </p>
+
+                            <p class="achievement-description bold-achievement-text">
+                                I completed Design Fundamentals with AI from Adobe and Basic Computer Course Training from CSC Academy, gaining essential skills in AI design fundamentals and computer operations.
+                            </p>
+
+                            <div class="achievement-badge">
+                                <span class="badge-text">Certified & Verified</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-media achievement-media-dual">
+                        <div class="achievement-img-frame">
+                            <img src="./images/cert_1.png" onerror="this.onerror=null;this.src='./images/cert_1.png';" alt="Professional Certification Certificate" class="achievement-img" loading="lazy">
+                        </div>
+                        <div class="achievement-img-frame">
+                            <img src="./images/cert_2.png" onerror="this.onerror=null;this.src='images/cert_2.png';" alt="Adobe Design Fundamentals with AI Certificate" class="achievement-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section class="contact" id="contact" data-section="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p class="contact-intro">
+                        I'm always interested in hearing about new projects and creative opportunities. Feel free to reach out!
+                    </p>
+
+                    <!-- Clickable icon cards -->
+                    <div class="contact-cards">
+
+                        <!-- Email -->
+                        <div class="contact-card" data-card="email">
+                            <button class="card-icon-btn" aria-label="Show email" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <polyline points="2,4 12,13 22,4"/>
+                                </svg>
+                                <span class="card-label">Email</span>
+                            </button>
+                            <div class="card-detail" aria-hidden="true">
+                                <a href="mailto:bariksamadrita06@gmail.com" class="card-detail-link">
+                                    bariksamadrita06@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="contact-card" data-card="phone">
+                            <button class="card-icon-btn" aria-label="Show phone number" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
+                                             A19.5 19.5 0 0 1 3.15 12 19.79 19.79 0 0 1 .08 3.35
+                                             2 2 0 0 1 2.06 1h3a2 2 0 0 1 2 1.72
+                                             c.13 1 .37 1.97.72 2.9a2 2 0 0 1-.45 2.11L6.09 8.91
+                                             a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45
+                                             c.93.35 1.9.59 2.9.72A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                                <span class="card-label">Phone</span>
+                            </button>
+                            <div class="card-detail" aria-hidden="true">
+                                <a href="tel:+919832289499" class="card-detail-link">
+                                    +91 98322 89499
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- LinkedIn -->
+                        <div class="contact-card" data-card="linkedin">
+                            <button class="card-icon-btn" aria-label="Show LinkedIn" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="4"/>
+                                    <line x1="8" y1="11" x2="8" y2="17"/>
+                                    <line x1="8" y1="7" x2="8" y2="8"/>
+                                    <polyline points="12,17 12,11 16,11"/>
+                                    <path d="M16 14a2 2 0 0 0-4 0"/>
+                                </svg>
+                                <span class="card-label">LinkedIn</span>
+                            </button>
+                            <div class="card-detail" aria-hidden="true">
+                                <a href="https://www.linkedin.com/in/samadrita-barik-a8062442b"
+                                   target="_blank" rel="noopener noreferrer" class="card-detail-link">
+                                    View Profile →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- GitHub -->
+                        <div class="contact-card" data-card="github">
+                            <button class="card-icon-btn" aria-label="Show GitHub" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61
+                                             c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77
+                                             5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48
+                                             a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1
+                                             A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.55
+                                             c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                <span class="card-label">GitHub</span>
+                            </button>
+                            <div class="card-detail" aria-hidden="true">
+                                <a href="https://github.com/bariksamadrita6-creator"
+                                   target="_blank" rel="noopener noreferrer" class="card-detail-link">
+                                    View Profile →
+                                </a>
+                            </div>
+                        </div>
+
+                    </div><!-- /.contact-cards -->
+                </div>
+
+                <form class="contact-form" id="contactForm" data-form="contact">
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Your Name" 
+                            required 
+                            class="form-input"
+                        >
+                        <div class="form-underline"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Your Email" 
+                            required 
+                            class="form-input"
+                        >
+                        <div class="form-underline"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder="Your Message" 
+                            rows="5" 
+                            required 
+                            class="form-input"
+                        ></textarea>
+                        <div class="form-underline"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span>Send Message</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success Toast Notification -->
+        <div class="toast" id="toast" data-toast="success">
+            <span class="toast-icon">✓</span>
+            <span class="toast-message">Message sent successfully! I'll get back to you soon.</span>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER SECTION
+         ============================================ -->
+    <footer class="footer" data-section="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    College Submission Portfolio 2026 • B.Tech CSE • Samadrita Barik • Honest & Verified Achievements • Kolkata
+                </p>
+                <p class="footer-credit">
+                    Designed & Built with <span class="accent">❤</span> using Vanilla HTML, CSS & JavaScript
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         PROJECT MODAL / LIGHTBOX
+         ============================================ -->
+    <div class="modal" id="projectModal" data-modal="project">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            
+            <div class="modal-body">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
