@@ -793,7 +793,77 @@ if (curiosity) {
          ============================================ -->
     <section class="contact" id="contact" data-section="contact">
         <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
+            <div class="section-title-wrap">
+                <h2 class="section-title">Let's Connect</h2>
+
+                <!-- Cartoon cat calling with phone -->
+                <div class="cat-caller" aria-hidden="true">
+                    <svg class="cat-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+                        <!-- ── tail ── -->
+                        <path class="cat-tail" d="M60 148 Q30 130 38 108 Q46 90 60 102"
+                              stroke="#f5a623" stroke-width="7" stroke-linecap="round" fill="none"/>
+                        <!-- ── body ── -->
+                        <ellipse cx="85" cy="118" rx="34" ry="28" fill="#ffd580"/>
+                        <!-- belly patch -->
+                        <ellipse cx="85" cy="122" rx="20" ry="17" fill="#fff5d6"/>
+                        <!-- ── head ── -->
+                        <ellipse cx="85" cy="82" rx="30" ry="27" fill="#ffd580"/>
+                        <!-- ── ears ── -->
+                        <polygon points="60,64 54,42 74,58" fill="#ffd580"/>
+                        <polygon points="60,64 58,48 72,59" fill="#ffb3b3"/>
+                        <polygon points="110,64 116,42 96,58" fill="#ffd580"/>
+                        <polygon points="110,64 112,48 98,59" fill="#ffb3b3"/>
+                        <!-- ── face ── -->
+                        <!-- eyes (happy squint) -->
+                        <path class="cat-eye-l" d="M75 79 Q79 74 83 79" stroke="#3d2b00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <path class="cat-eye-r" d="M87 79 Q91 74 95 79" stroke="#3d2b00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <!-- blush -->
+                        <ellipse cx="70" cy="87" rx="7" ry="4" fill="#ff9999" opacity="0.55"/>
+                        <ellipse cx="100" cy="87" rx="7" ry="4" fill="#ff9999" opacity="0.55"/>
+                        <!-- nose -->
+                        <ellipse cx="85" cy="88" rx="3.5" ry="2.5" fill="#ff7eb3"/>
+                        <!-- mouth -->
+                        <path d="M82 91 Q85 95 88 91" stroke="#3d2b00" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <!-- whiskers left -->
+                        <line x1="56" y1="87" x2="78" y2="89" stroke="#a0701a" stroke-width="1.4" stroke-linecap="round"/>
+                        <line x1="56" y1="92" x2="78" y2="91" stroke="#a0701a" stroke-width="1.4" stroke-linecap="round"/>
+                        <!-- whiskers right -->
+                        <line x1="92" y1="89" x2="114" y2="87" stroke="#a0701a" stroke-width="1.4" stroke-linecap="round"/>
+                        <line x1="92" y1="91" x2="114" y2="92" stroke="#a0701a" stroke-width="1.4" stroke-linecap="round"/>
+
+                        <!-- ── arm / paw holding phone ── -->
+                        <path class="cat-arm" d="M112 100 Q128 94 130 80" stroke="#ffd580" stroke-width="10" stroke-linecap="round" fill="none"/>
+                        <!-- paw toes -->
+                        <circle cx="130" cy="78" r="5" fill="#ffd580"/>
+                        <circle cx="136" cy="82" r="4" fill="#ffd580"/>
+                        <circle cx="124" cy="76" r="4" fill="#ffd580"/>
+
+                        <!-- ── phone ── -->
+                        <rect class="cat-phone" x="128" y="56" width="18" height="30" rx="4" fill="#222" stroke="#555" stroke-width="1.5"/>
+                        <!-- phone screen -->
+                        <rect x="130" y="60" width="14" height="20" rx="2" fill="#4af"/>
+                        <!-- screen waveform / signal bars -->
+                        <rect x="132" y="70" width="2" height="6" rx="1" fill="#fff" opacity="0.9"/>
+                        <rect x="135" y="67" width="2" height="9" rx="1" fill="#fff" opacity="0.9"/>
+                        <rect x="138" y="64" width="2" height="12" rx="1" fill="#fff" opacity="0.9"/>
+                        <!-- home button -->
+                        <circle cx="137" cy="83" r="2" fill="#555"/>
+
+                        <!-- ── speech bubble ── -->
+                        <g class="cat-bubble">
+                            <rect x="4" y="34" width="66" height="36" rx="10" fill="#fff" stroke="#f5a623" stroke-width="2"/>
+                            <polygon points="30,70 20,80 40,70" fill="#fff" stroke="#f5a623" stroke-width="2" stroke-linejoin="round"/>
+                            <!-- ring signals -->
+                            <text x="37" y="58" text-anchor="middle" font-size="18" fill="#f5a623">📞</text>
+                        </g>
+                    </svg>
+
+                    <!-- animated signal waves around phone -->
+                    <span class="cat-wave w1"></span>
+                    <span class="cat-wave w2"></span>
+                    <span class="cat-wave w3"></span>
+                </div>
+            </div>
 
             <div class="contact-wrapper">
                 <div class="contact-info">
@@ -807,6 +877,12 @@ if (curiosity) {
                         <!-- Email -->
                         <div class="contact-card" data-card="email">
                             <button class="card-icon-btn" aria-label="Show email" aria-expanded="false">
+                                <span class="cc-scan"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-dot"></span>
+                                <span class="cc-dot"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -824,6 +900,12 @@ if (curiosity) {
                         <!-- Phone -->
                         <div class="contact-card" data-card="phone">
                             <button class="card-icon-btn" aria-label="Show phone number" aria-expanded="false">
+                                <span class="cc-scan"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-dot"></span>
+                                <span class="cc-dot"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
@@ -845,6 +927,12 @@ if (curiosity) {
                         <!-- LinkedIn -->
                         <div class="contact-card" data-card="linkedin">
                             <button class="card-icon-btn" aria-label="Show LinkedIn" aria-expanded="false">
+                                <span class="cc-scan"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-dot"></span>
+                                <span class="cc-dot"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="2" width="20" height="20" rx="4"/>
@@ -866,6 +954,12 @@ if (curiosity) {
                         <!-- GitHub -->
                         <div class="contact-card" data-card="github">
                             <button class="card-icon-btn" aria-label="Show GitHub" aria-expanded="false">
+                                <span class="cc-scan"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-ring"></span>
+                                <span class="cc-dot"></span>
+                                <span class="cc-dot"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61

@@ -4228,6 +4228,68 @@ html {
 }
 
 /* ── Clickable contact icon cards ── */
+/* ═══════════════════════════════════════════════════
+   CONTACT CARDS  –  Holographic / Animated Icons
+═══════════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes cc-pulse-ring {
+    0%   { transform: scale(0.85); opacity: 0.8; }
+    70%  { transform: scale(1.35); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes cc-orbit {
+    from { transform: rotate(0deg) translateX(28px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(28px) rotate(-360deg); }
+}
+@keyframes cc-orbit-rev {
+    from { transform: rotate(0deg) translateX(22px) rotate(0deg); }
+    to   { transform: rotate(-360deg) translateX(22px) rotate(360deg); }
+}
+@keyframes cc-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33%       { transform: translateY(-4px) rotate(2deg); }
+    66%       { transform: translateY(2px) rotate(-2deg); }
+}
+@keyframes cc-scan {
+    0%   { top: 10%; opacity: 0.6; }
+    50%  { opacity: 1; }
+    100% { top: 90%; opacity: 0.3; }
+}
+@keyframes cc-glitch-h {
+    0%,100%{ clip-path: none; transform: translate(0); }
+    20%    { clip-path: inset(10% 0 80% 0); transform: translate(-3px,0); }
+    40%    { clip-path: inset(60% 0 20% 0); transform: translate(3px,0); }
+    60%    { clip-path: none; transform: translate(0); }
+}
+@keyframes cc-border-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+@keyframes cc-label-glow {
+    0%,100% { text-shadow: 0 0 4px currentColor; }
+    50%      { text-shadow: 0 0 12px currentColor, 0 0 24px currentColor; }
+}
+@keyframes cc-icon-throb {
+    0%,100% { filter: drop-shadow(0 0 5px var(--cc-glow)) drop-shadow(0 0 10px var(--cc-glow)); }
+    50%      { filter: drop-shadow(0 0 12px var(--cc-glow)) drop-shadow(0 0 28px var(--cc-glow)); }
+}
+@keyframes cc-dot-blink {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.3; transform: scale(0.6); }
+}
+@keyframes cc-tilt-idle {
+    0%,100% { transform: perspective(600px) rotateX(0deg) rotateY(0deg); }
+    25%      { transform: perspective(600px) rotateX(3deg) rotateY(-3deg); }
+    75%      { transform: perspective(600px) rotateX(-3deg) rotateY(3deg); }
+}
+
+/* ── Per-card accent colours (CSS custom props) ── */
+.contact-card[data-card="email"]    { --cc-glow: rgba(0,212,255,0.9);   --cc-color: #00d4ff; }
+.contact-card[data-card="phone"]    { --cc-glow: rgba(0,255,163,0.9);   --cc-color: #00ffa3; }
+.contact-card[data-card="linkedin"] { --cc-glow: rgba(10,102,194,0.9);  --cc-color: #0a66c2; }
+.contact-card[data-card="github"]   { --cc-glow: rgba(180,130,255,0.9); --cc-color: #b482ff; }
+
 .contact-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -4241,70 +4303,188 @@ html {
     align-items: center;
 }
 
-/* Icon button */
+/* ── Main icon button wrapper ── */
 .card-icon-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
     width: 100%;
-    padding: 1.2rem 1rem;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-light);
-    border-radius: 1rem;
-    color: var(--accent-primary);
+    padding: 1.4rem 1rem 1.2rem;
+    background: linear-gradient(135deg,
+        rgba(255,255,255,0.04) 0%,
+        rgba(0,0,0,0.2) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.2rem;
+    color: var(--cc-color, var(--accent-primary));
     cursor: pointer;
-    transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    /* idle 3-D tilt */
+    animation: cc-tilt-idle 6s ease-in-out infinite;
+    transition: transform 0.25s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
 }
 
+/* ── Spinning conic-gradient border ring ── */
+.card-icon-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        var(--cc-color, #00d4ff) 0deg,
+        transparent 100deg,
+        transparent 260deg,
+        var(--cc-color, #00d4ff) 360deg
+    );
+    z-index: 0;
+    opacity: 0;
+    animation: cc-border-spin 3s linear infinite;
+    transition: opacity 0.35s ease;
+}
+
+/* Mask so only the border strip shows */
+.card-icon-btn::before {
+    -webkit-mask: linear-gradient(#000 0 0) content-box,
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+}
+
+/* ── Scan-line sweep ── */
+.card-icon-btn .cc-scan {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cc-color, #00d4ff), transparent);
+    animation: cc-scan 2.4s linear infinite;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* ── Pulse rings ── */
+.card-icon-btn .cc-ring {
+    position: absolute;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--cc-color, #00d4ff);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0;
+    animation: cc-pulse-ring 2.2s ease-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+.card-icon-btn .cc-ring:nth-child(2) { animation-delay: 0.7s; }
+.card-icon-btn .cc-ring:nth-child(3) { animation-delay: 1.4s; }
+
+/* ── Orbital dots ── */
+.card-icon-btn .cc-dot {
+    position: absolute;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--cc-color, #00d4ff);
+    top: 50%; left: 50%;
+    margin: -2.5px 0 0 -2.5px;
+    opacity: 0;
+    animation: cc-orbit 3.5s linear infinite,
+               cc-dot-blink 1.8s ease-in-out infinite;
+    box-shadow: 0 0 6px var(--cc-color, #00d4ff);
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+.card-icon-btn .cc-dot:nth-child(5) {
+    animation: cc-orbit-rev 2.5s linear infinite,
+               cc-dot-blink 2.2s ease-in-out 0.5s infinite;
+    width: 3px; height: 3px;
+    margin: -1.5px 0 0 -1.5px;
+}
+
+/* ── SVG icon ── */
 .card-icon-btn svg {
     width: 2rem;
     height: 2rem;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+    z-index: 3;
+    animation: cc-float 4s ease-in-out infinite;
+    transition: filter 0.3s ease;
+    filter: drop-shadow(0 0 4px var(--cc-glow, rgba(0,212,255,0.6)));
 }
 
+/* ── Label ── */
 .card-label {
     font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-tertiary);
-    transition: color 0.3s ease;
+    color: var(--cc-color, var(--text-tertiary));
+    position: relative;
+    z-index: 3;
+    animation: cc-label-glow 3s ease-in-out infinite;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
 
-/* Hover state */
+/* ══ HOVER state ══ */
 .card-icon-btn:hover {
-    border-color: var(--accent-primary);
-    background: rgba(0, 212, 255, 0.06);
+    animation: none;
+    transform: perspective(600px) rotateX(-6deg) scale(1.04);
+    border-color: var(--cc-color, var(--accent-primary));
+    background: linear-gradient(135deg,
+        rgba(255,255,255,0.07) 0%,
+        rgba(0,0,0,0.15) 100%);
+    box-shadow:
+        0 0 0 1px var(--cc-color, #00d4ff),
+        0 0 20px var(--cc-glow, rgba(0,212,255,0.35)),
+        0 8px 32px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.12);
 }
+.card-icon-btn:hover::before { opacity: 1; }
+.card-icon-btn:hover .cc-scan { opacity: 1; }
+.card-icon-btn:hover .cc-dot  { opacity: 1; }
 
 .card-icon-btn:hover svg {
-    transform: translateY(-3px);
-    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.7));
+    animation: cc-icon-throb 1.2s ease-in-out infinite;
+    transform: translateY(-2px) scale(1.12);
 }
 
 .card-icon-btn:hover .card-label {
-    color: var(--accent-primary);
+    letter-spacing: 3px;
 }
 
-/* Active / open state */
+/* ══ ACTIVE / open state ══ */
 .contact-card.active .card-icon-btn {
-    border-color: var(--accent-primary);
-    background: rgba(0, 212, 255, 0.1);
-    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.25),
-                0 0 18px rgba(0, 212, 255, 0.15);
+    animation: none;
+    border-color: var(--cc-color, var(--accent-primary));
+    background: linear-gradient(135deg,
+        rgba(0,212,255,0.08) 0%,
+        rgba(0,0,0,0.18) 100%);
+    box-shadow:
+        0 0 0 2px var(--cc-color, #00d4ff),
+        0 0 30px var(--cc-glow, rgba(0,212,255,0.4)),
+        inset 0 1px 0 rgba(255,255,255,0.1);
 }
+.contact-card.active .card-icon-btn::before { opacity: 1; }
+.contact-card.active .card-icon-btn .cc-scan { opacity: 1; }
+.contact-card.active .card-icon-btn .cc-dot  { opacity: 1; }
 
 .contact-card.active .card-icon-btn svg {
-    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.85));
+    animation: cc-icon-throb 1.5s ease-in-out infinite,
+               cc-float 3s ease-in-out infinite;
 }
 
 .contact-card.active .card-label {
-    color: var(--accent-primary);
+    color: #fff;
 }
 
-/* Slide-down detail panel */
+/* ── Slide-down detail panel ── */
 .card-detail {
     max-height: 0;
     overflow: hidden;
@@ -4326,7 +4506,7 @@ html {
     display: inline-block;
     font-size: 0.88rem;
     font-weight: 500;
-    color: var(--accent-primary);
+    color: var(--cc-color, var(--accent-primary));
     text-decoration: none;
     padding: 0.35rem 0.8rem;
     background: rgba(0, 212, 255, 0.08);
@@ -4339,7 +4519,135 @@ html {
 .card-detail-link:hover {
     background: rgba(0, 212, 255, 0.18);
     color: #fff;
-    border-color: var(--accent-primary);
+    border-color: var(--cc-color, var(--accent-primary));
+}
+/* ════════════════════════════════════════════════════
+   CARTOON CAT CALLER  –  "Let's Connect" heading
+════════════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes cat-bob {
+    0%,100% { transform: translateY(0px) rotate(-1deg); }
+    50%      { transform: translateY(-8px) rotate(1deg); }
+}
+@keyframes cat-tail-wag {
+    0%,100% { transform-origin: 60px 102px; transform: rotate(0deg); }
+    40%      { transform-origin: 60px 102px; transform: rotate(18deg); }
+    70%      { transform-origin: 60px 102px; transform: rotate(-12deg); }
+}
+@keyframes cat-arm-wave {
+    0%,100% { transform-origin: 112px 100px; transform: rotate(0deg); }
+    40%      { transform-origin: 112px 100px; transform: rotate(-12deg); }
+    70%      { transform-origin: 112px 100px; transform: rotate(8deg); }
+}
+@keyframes cat-phone-ring {
+    0%,90%,100% { transform: rotate(0deg); }
+    92%          { transform: rotate(-8deg); }
+    95%          { transform: rotate(10deg); }
+    97%          { transform: rotate(-6deg); }
+}
+@keyframes cat-bubble-pop {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.06); opacity: 0.85; }
+}
+@keyframes cat-eye-blink {
+    0%,88%,100% { transform: scaleY(1); }
+    92%          { transform: scaleY(0.1); }
+}
+@keyframes cat-signal-ring {
+    0%   { transform: scale(0.6); opacity: 0.9; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Title row ── */
+.section-title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    width: 100%;
+}
+
+/* Override global width:100% so title only takes its natural text width */
+.section-title-wrap .section-title {
+    margin-bottom: 0;
+    width: auto;
+    display: inline-block;
+}
+
+/* ── Cat container ── */
+.cat-caller {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    /* nudge so the cat's feet align with the text baseline */
+    transform: translateY(6px);
+}
+
+/* ── Main SVG ── */
+.cat-svg {
+    width: 120px;
+    height: 120px;
+    animation: cat-bob 2.4s ease-in-out infinite;
+    overflow: visible;
+    filter: drop-shadow(0 6px 14px rgba(245,166,35,0.35));
+}
+
+/* ── Tail ── */
+.cat-tail {
+    animation: cat-tail-wag 1.8s ease-in-out infinite;
+}
+
+/* ── Arm ── */
+.cat-arm {
+    animation: cat-arm-wave 2.2s ease-in-out infinite;
+}
+
+/* ── Phone shake / ring ── */
+.cat-phone {
+    animation: cat-phone-ring 3s ease-in-out infinite;
+    transform-origin: 137px 71px;
+}
+
+/* ── Speech bubble ── */
+.cat-bubble {
+    animation: cat-bubble-pop 1.8s ease-in-out infinite;
+    transform-origin: 37px 52px;
+}
+
+/* ── Eye blink ── */
+.cat-eye-l,
+.cat-eye-r {
+    transform-origin: 79px 77px;
+    animation: cat-eye-blink 4s ease-in-out infinite;
+}
+.cat-eye-r { animation-delay: 0.08s; }
+
+/* ── Signal waves (positioned around the phone top-right area) ── */
+.cat-wave {
+    position: absolute;
+    border-radius: 50%;
+    border: 2.5px solid #44aaff;
+    /* centre on the phone's position inside the 120×120 box */
+    top: 22px;
+    right: -2px;
+    width: 22px;
+    height: 22px;
+    animation: cat-signal-ring 1.8s ease-out infinite;
+    pointer-events: none;
+}
+.cat-wave.w2 { animation-delay: 0.6s;  border-color: #55bbff; }
+.cat-wave.w3 { animation-delay: 1.2s;  border-color: #88ddff; }
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+    .cat-caller { width: 80px; height: 80px; }
+    .cat-svg    { width: 80px; height: 80px; }
 }
 
 /* Contact Form */
